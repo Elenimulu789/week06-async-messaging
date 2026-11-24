@@ -1,0 +1,10 @@
+# Initial simplified AI draft, retained as an audit artifact, not imported.
+def start(channel, store):
+    def consume(ch, method, properties, body):
+        generate_report(body)
+        store.complete(body["job_id"])
+    channel.basic_consume(
+        queue="week06.jobs",
+        on_message_callback=consume,
+        auto_ack=True,
+    )

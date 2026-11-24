@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="390" viewBox="0 0 1100 390">
+<title>Asynchronous report generation architecture</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#236750"/></marker><style>text{font-family:Arial,sans-serif;fill:#183237;font-size:16px}.h{font-weight:bold;font-size:19px}.s{font-size:13px}.b{fill:#f4f7f0;stroke:#b9cbc2;stroke-width:1.5}.l{fill:none;stroke:#236750;stroke-width:2;marker-end:url(#a)}</style></defs>
+<rect width="1100" height="390" fill="#fff"/>
+<rect class="b" x="20" y="65" width="190" height="100" rx="8"/><text class="h" x="42" y="103">Browser / client</text><text class="s" x="42" y="132">Submit + poll status</text>
+<rect class="b" x="300" y="65" width="200" height="100" rx="8"/><text class="h" x="325" y="103">REST API</text><text class="s" x="325" y="132">202 after confirmation</text>
+<rect x="590" y="65" width="200" height="100" rx="8" fill="#143b3e"/><text x="615" y="103" style="fill:#fff;font-weight:bold;font-size:19px">RabbitMQ</text><text x="615" y="132" style="fill:#ccebd9;font-size:13px">Durable quorum queue</text>
+<rect class="b" x="880" y="65" width="200" height="100" rx="8"/><text class="h" x="905" y="103">Worker</text><text class="s" x="905" y="132">4-second report task</text>
+<path class="l" d="M210 90H300"/><text class="s" x="224" y="78">POST</text>
+<path class="l" d="M300 146H210"/><text class="s" x="222" y="169">202 / GET</text>
+<path class="l" d="M500 90H590"/><text class="s" x="511" y="78">Publish</text>
+<path class="l" d="M590 146H500"/><text class="s" x="511" y="169">Confirm</text>
+<path class="l" d="M790 90H880"/><text class="s" x="799" y="78">Delivery</text>
+<path class="l" d="M880 146H790"/><text class="s" x="804" y="169">ACK / NACK</text>
+<rect class="b" x="300" y="270" width="290" height="90" rx="8"/><text class="h" x="324" y="305">SQLite status + outbox</text><text class="s" x="324" y="332">Job / report / unique job ID</text>
+<path class="l" d="M375 165V270"/><text class="s" x="390" y="220">Commit / read</text>
+<path class="l" d="M980 165V225H550V270"/><text class="s" x="675" y="218">Commit result before ACK</text>
+<rect x="700" y="285" width="300" height="75" rx="8" fill="#fae3d5" stroke="#d4af97"/><text class="h" x="725" y="316">Dead-letter queue</text><text class="s" x="725" y="340">Inspect · repair · controlled replay</text>
+<path class="l" d="M690 165V250H850V285"/><text class="s" x="703" y="246">Rejected / delivery limit</text>
+</svg>
